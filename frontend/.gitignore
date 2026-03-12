@@ -2,9 +2,7 @@ node_modules/
 dist/
 .vite/
 *.map
+*.log
 .env
 .env.*
 .DS_Store
-.idea/
-.vscode/
-*.swp
