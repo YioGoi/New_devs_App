@@ -16,7 +16,10 @@ async def get_dashboard_summary(
     if not tenant_id:
         raise HTTPException(status_code=401, detail="Tenant context missing")
 
-    revenue_data = await get_revenue_summary(property_id, tenant_id, month=month, year=year)
+    try:
+        revenue_data = await get_revenue_summary(property_id, tenant_id, month=month, year=year)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     return {
         "property_id": revenue_data['property_id'],
